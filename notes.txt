@@ -1,0 +1,25 @@
+In a standard request-response cycle (HTTP), communication is entirely unidirectional. The server is strictly reactive; 
+it cannot speak unless spoken to and cannot push data to the client on its own initiative.
+
+WebSockets eliminate this restriction by replacing the repetitive cycle with a persistent, bidirectional (full-duplex) connection
+Once a single handshake upgrades the connection from HTTP to WebSocket, the channel stays open indefinitely. 
+Both the client and server can push data back and forth instantly at any time without the overhead of HTTP headers or establishing new connections.
+
+WebSocket is a communication protocol that enables continuous, two-way, full-duplex communication between a client and a server over a single,
+persistent TCP connection
+
+socket.emit() : Sender: Pushes a message and payload out to the other side.
+socket.on() : Listener: Waits for a specific event type to trigger its function
+
+
+io.emit() : Everyone connected to the server. ex - Global announcements, public chat room messages.
+socket.emit() : Only the single client tied to that specific socket instance. ex - Welcome messages, private data, validation errors.
+socket.broadcast.emit() : Everyone except the client who sent the message. ex - "User typing..." alerts, notifying others someone joined. (not user itself)
+
+io.on() : listens for global events across the entire server manager (like a new client connecting)
+socket.on() : listens for specific events from an individual connected client
+
+
+socket.join(room) : Add the current user to a room
+socket.leave(room) : Remove the current user from a room
+io.to(roomno).emit('event_name', data) : Send a message only to users in that room  (To enter in specific room)
